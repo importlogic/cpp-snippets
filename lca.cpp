@@ -1,6 +1,6 @@
 /*
-	this code assumes a 0 based graph with n vertices
-	everything has been done you just need to call get_lca() function
+	1. This code assumes a 0 based graph [ g ] with n vertices.
+	2. Everything has been done you just need to call get_lca() function.
 */
 
 const int LOG = log2(n) + 1;

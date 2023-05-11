@@ -1,4 +1,8 @@
-// The tree is based on an [ input ] vector assuming 1 based indexing
+/*
+    1. The tree is based on an [ input ] vector assuming 1 based indexing.
+    2. Everything has been done you just need to call update and query functions.
+    3. The code is for range sum, make your changes accordingly.
+*/
 
 vector<int> tree(4 * n);
 vector<int> lazy(4 * n);
@@ -80,3 +84,5 @@ function<int(int, int, int, int, int)> query = [&](int node, int low, int high, 
 
     return x + y;
 };
+
+build(1, 1, n);
