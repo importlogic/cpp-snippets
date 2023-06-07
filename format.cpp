@@ -65,9 +65,9 @@ inline void ayu()
     cin.tie(nullptr);
 
     #ifndef ONLINE_JUDGE
-        freopen("input.txt", "r", stdin);
-        freopen("output.txt", "w", stdout);
-        freopen("error.txt", "w", stderr);
+        freopen("./files/input.txt", "r", stdin);
+        freopen("./files/output.txt", "w", stdout);
+        freopen("./files/error.txt", "w", stderr);
     #endif
 }
 
