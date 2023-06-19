@@ -55,6 +55,8 @@ function<void(int, int, int, int, int, int)> update = [&](int node, int low, int
 
     update(2 * node, low, mid, rangelow, rangehigh, dx);
     update(2 * node + 1, mid + 1, high, rangelow, rangehigh, dx);
+
+    seg_tree[node] = seg_tree[2 * node] + seg_tree[2 * node + 1];
 };
 
 function<int(int, int, int, int, int)> query = [&](int node, int low, int high, int rangelow, int rangehigh) -> int {

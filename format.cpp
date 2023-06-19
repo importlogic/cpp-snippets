@@ -10,8 +10,8 @@ using namespace __gnu_pbds;
 
 
 
-#define loop(a,b,c)      for(int a=b;a<c;a++)
-#define loopr(a,b,c)     for(int a=b;a>c;a--)
+#define fr(a,b,c)        for(int a=b;a<c;a++)
+#define rfr(a,b,c)       for(int a=b;a>c;a--)
 #define nl               ("\n")
 #define int              long long
 #define double           long double
