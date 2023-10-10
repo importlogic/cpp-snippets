@@ -14,36 +14,36 @@ void settingParents(int node, int parent, int d, vector<vector<int>> &g) {
 	depth[node] = d;
 
 	for(int i = 1; i < LOG; i++){
-		if(up[node][i - 1] != -1)
-			up[node][i] = up[up[node][i - 1]][i - 1];
-	}
+        if(up[node][i - 1] != -1)
+            up[node][i] = up[up[node][i - 1]][i - 1];
+    }
 
-	for(auto child : g[node]){
-		if(child != parent)
-			settingParents(child, node, d + 1, g);
-	}
+    for(auto child : g[node]){
+        if(child != parent)
+            settingParents(child, node, d + 1, g);
+    }
 }
 
 int get_lca(int x, int y) {
-	if(depth[x] < depth[y])
-		swap(x, y);
+    if(depth[x] < depth[y])
+        swap(x, y);
 
-	int dx = depth[x] - depth[y];
+    int dx = depth[x] - depth[y];
 
-	for(int i = LOG - 1; i > -1; i--){
-		if((dx >> i) & 1)
-			x = up[x][i];
-	}
+    for(int i = LOG - 1; i > -1; i--){
+        if((dx >> i) & 1)
+            x = up[x][i];
+    }
 
-	if(x == y)
-		return x;
+    if(x == y)
+        return x;
 
-	for(int i = LOG - 1; i > -1; i--){
-		if(up[x][i] != up[y][i]){
-			x = up[x][i];
-			y = up[y][i];
-		}
-	}
+    for(int i = LOG - 1; i > -1; i--){
+        if(up[x][i] != up[y][i]){
+            x = up[x][i];
+            y = up[y][i];
+        }
+    }
 
-	return up[x][0];
+    return up[x][0];
 }
