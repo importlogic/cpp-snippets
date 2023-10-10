@@ -63,12 +63,6 @@ inline void ayu()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-
-    #ifndef ONLINE_JUDGE
-        freopen("./files/input.txt", "r", stdin);
-        freopen("./files/output.txt", "w", stdout);
-        freopen("./files/error.txt", "w", stderr);
-    #endif
 }
 
 // int dx[] = { -1 , 1 ,  0  , 0 , -1  , -1  ,  1  , 1  };
@@ -119,12 +113,6 @@ signed main()
 
     for(int i = 1; i <= T; i++)
         solve(i);
-
-    #ifndef ONLINE_JUDGE
-        double timeTaken = 1000.0 * clock() / CLOCKS_PER_SEC;
-        cout << "\n[Finished in " << timeTaken << "ms]";
-        cerr << "\n[Finished in " << timeTaken << "ms]";
-    #endif
 
     return 0;
 }
