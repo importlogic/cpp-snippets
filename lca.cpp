@@ -1,13 +1,15 @@
 /*
-	1. This code assumes a 0 based graph [ g ] with n vertices.
-	2. Everything has been done you just need to call get_lca() function.
+	1. This code assumes a 0 based tree [ g ] with n vertices.
+	2. Set the value of N as the maximum number of vertices in the tree.
+	3. Everything has been done you just need to call settingParents and get_lca function.
 */
 
-const int LOG = log2(n) + 1;
-vector<vector<int>> up(n, vector<int>(LOG, -1));
-vector<int> depth(n);
+const int N = 1e5;
+const int LOG = log2(N) + 1;
+vector<vector<int>> up(N, vector<int>(LOG, -1));
+vector<int> depth(N);
 
-function<void(int, int, int)> settingParents = [&](int node, int parent, int d) {
+void settingParents(int node, int parent, int d, vector<vector<int>> &g) {
 	up[node][0] = parent;
 	depth[node] = d;
 
@@ -18,11 +20,11 @@ function<void(int, int, int)> settingParents = [&](int node, int parent, int d) 
 
 	for(auto child : g[node]){
 		if(child != parent)
-			settingParents(child, node, d + 1);
+			settingParents(child, node, d + 1, g);
 	}
-};
+}
 
-function<int(int, int)> get_lca = [&](int x, int y) -> int {
+int get_lca(int x, int y) {
 	if(depth[x] < depth[y])
 		swap(x, y);
 
@@ -44,6 +46,4 @@ function<int(int, int)> get_lca = [&](int x, int y) -> int {
 	}
 
 	return up[x][0];
-};
-
-settingParents(0, -1, 0);
+}
