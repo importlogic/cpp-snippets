@@ -8,8 +8,8 @@
 using namespace std;
 using namespace __gnu_pbds;
 
-#define int              long long
-#define double           long double
+#define int long long
+#define double long double
 
 typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> pbds; 
 // *find_by_order, order_of_key
