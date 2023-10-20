@@ -1,7 +1,7 @@
 /*
-	1. This code assumes a 0 based tree [ g ] with n vertices.
-	2. Set the value of N as the maximum number of vertices in the tree.
-	3. Everything has been done you just need to call settingParents and get_lca function.
+    1. This code assumes a 0 based tree [ g ] with n vertices.
+    2. Set the value of N as the maximum number of vertices in the tree.
+    3. Everything has been done you just need to call settingParents and get_lca function.
 */
 
 const int N = 1e5;
@@ -10,10 +10,10 @@ vector<vector<int>> up(N, vector<int>(LOG, -1));
 vector<int> depth(N);
 
 void settingParents(int node, int parent, int d, vector<vector<int>> &g) {
-	up[node][0] = parent;
-	depth[node] = d;
+    up[node][0] = parent;
+    depth[node] = d;
 
-	for(int i = 1; i < LOG; i++){
+    for(int i = 1; i < LOG; i++){
         if(up[node][i - 1] != -1)
             up[node][i] = up[up[node][i - 1]][i - 1];
     }
