@@ -59,12 +59,6 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
 
-inline void ayu()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-}
-
 int dx[] = { -1 , 1 ,  0  , 0 , -1  , -1  ,  1  , 1  };
 int dy[] = { 0  , 0 , -1  , 1 , -1  ,  1  , -1  , 1  };
 
@@ -105,7 +99,8 @@ void solve(int T)
 
 signed main()
 {
-    ayu();
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
     int T = 1;
 

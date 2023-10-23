@@ -40,12 +40,6 @@ template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; f
 // ******************* DEBUGGER END *******************
 
 
-inline void ayu()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-}
-
 const double PI = 3.1415926535;
 
 /*
@@ -69,7 +63,8 @@ void solve(int T)
 
 signed main()
 {
-    ayu();
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
     int T = 1;
 
