@@ -8,8 +8,6 @@
 using namespace std;
 using namespace __gnu_pbds;
 
-
-
 #define fr(a,b,c)        for(int a=b;a<c;a++)
 #define rfr(a,b,c)       for(int a=b;a>c;a--)
 #define nl               ("\n")
@@ -31,10 +29,8 @@ using namespace __gnu_pbds;
 #define inp(v)           for(auto &item : v) cin>>item.ff>>item.ss;
 #define google(T)        cout<< "Case #" << T << ": ";
 
-
 typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> pbds; 
 // *find_by_order, order_of_key
-
 
 #ifndef ONLINE_JUDGE
 #define db(x)            cerr << #x <<" "; _print(x); cerr << nl;
@@ -50,19 +46,12 @@ void _print(string t) {cerr << t;}
 void _print(char t) {cerr << t;}
 void _print(bool t) {cerr << ((t)?"true":"false");}
 
-
 template <class T, class V> void _print(pair <T, V> p) {cerr << "{"; _print(p.ff); cerr << ","; _print(p.ss); cerr << "}";}
 template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
-
-
-int dx[] = { -1 , 1 ,  0  , 0 , -1  , -1  ,  1  , 1  };
-int dy[] = { 0  , 0 , -1  , 1 , -1  ,  1  , -1  , 1  };
-
-//         { U  , D ,  L  , R , UL  , UR  , DL  , DR }
 
 /*---------------------------------------------------------------------------------------------------------------------------*/
 int modadd(int a,int b,int m){ a %= m;b %= m; return (a + b) % m;}
@@ -76,10 +65,6 @@ vb sieve(int n){vb prime(n+1,1); prime[0] = prime[1] = 0; for(int i=2;i*i<=n;i++
 vs rmspace(string s){ vs toreturn; string tmp = ""; for(auto i : s){ if(i == ' '){ toreturn.pb(tmp); tmp = "";} else tmp += i;} toreturn.pb(tmp); return toreturn;}
 /*---------------------------------------------------------------------------------------------------------------------------*/
 
-const double PI = 3.1415926535;
-const int inf = 1e18;
-const int mod = 1000000007;
-
 /*
 
 1. Think Greedy
@@ -90,6 +75,15 @@ const int mod = 1000000007;
 6. Think Graph 
 
 */
+
+int dx[] = { -1 , 1 ,  0  , 0 , -1  , -1  ,  1  , 1  };
+int dy[] = { 0  , 0 , -1  , 1 , -1  ,  1  , -1  , 1  };
+
+//         { U  , D ,  L  , R , UL  , UR  , DL  , DR }
+
+const double PI = 3.1415926535;
+const int inf = 1e18;
+const int mod = 1000000007;
 
 void solve(int T)
 {
