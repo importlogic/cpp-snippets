@@ -1,90 +1,97 @@
-/*
-    1. The seg_tree is based on an [ input ] vector assuming 0 based indexing.
-    2. Set the value of N as 4 * n where n is the maximum input vector size.
-    3. Everything has been done you just need to call build, update and query functions.
-    4. The code is for range sum, make your changes accordingly.
-*/
+class seg_tree {
+  int N;
+  vector<int> seg, lazy;
+  vector<int> input;
 
-const int N = 8e5;
-vector<int> seg_tree(N);
-vector<int> lazy_tree(N);
-
-void build(int node, int low, int high, vector<int> &input){
+  void _build_sum(int node, int low, int high) {
     if(low == high){
-        seg_tree[node] = input[low];
-        lazy_tree[node] = 0;
-        return;
+      seg[node] = input[low];
+      lazy[node] = 0;
+      return;
     }
 
     int mid = low + (high - low) / 2;
-    build(2 * node + 1, low, mid, input);
-    build(2 * node + 2, mid + 1, high, input);
+    _build_sum(2 * node + 1, low, mid);
+    _build_sum(2 * node + 2, mid + 1, high);
 
-    seg_tree[node] = seg_tree[2 * node + 1] + seg_tree[2 * node + 2];
-}
+    seg[node] = seg[2 * node + 1] + seg[2 * node + 2];      
+  }
 
-void update(int node, int low, int high, int rangelow, int rangehigh, int dx){
-    if(lazy_tree[node]){
-        int size = high - low + 1;
+  void _update_sum(int node, int low, int high, int rangelow, int rangehigh, int dx){
+    if(lazy[node]){
+      int size = high - low + 1;
 
-        seg_tree[node] += size * lazy_tree[node];
+      seg[node] += size * lazy[node];
 
-        if(low != high){
-            lazy_tree[2 * node + 1] += lazy_tree[node];
-            lazy_tree[2 * node + 2] += lazy_tree[node];
-        }
+      if(low != high){
+          lazy[2 * node + 1] += lazy[node];
+          lazy[2 * node + 2] += lazy[node];
+      }
 
-        lazy_tree[node] = 0;
+      lazy[node] = 0;
     }
 
     if(low > rangehigh or high < rangelow)
         return;
 
     if(low >= rangelow and high <= rangehigh){
-        int size = high - low + 1;
+      int size = high - low + 1;
 
-        seg_tree[node] += size * dx;
+      seg[node] += size * dx;
 
-        if(low != high){
-            lazy_tree[2 * node + 1] += dx;
-            lazy_tree[2 * node + 2] += dx;
-        }
+      if(low != high){
+          lazy[2 * node + 1] += dx;
+          lazy[2 * node + 2] += dx;
+      }
 
-        return;
+      return;
     }
 
     int mid = low + (high - low) / 2;
 
-    update(2 * node + 1, low, mid, rangelow, rangehigh, dx);
-    update(2 * node + 2, mid + 1, high, rangelow, rangehigh, dx);
+    _update_sum(2 * node + 1, low, mid, rangelow, rangehigh, dx);
+    _update_sum(2 * node + 2, mid + 1, high, rangelow, rangehigh, dx);
 
-    seg_tree[node] = seg_tree[2 * node + 1] + seg_tree[2 * node + 2];
-}
+    seg[node] = seg[2 * node + 1] + seg[2 * node + 2];
+  }
 
-int query(int node, int low, int high, int rangelow, int rangehigh) {
-    if(lazy_tree[node]){
-        int size = high - low + 1;
+  int _query_sum(int node, int low, int high, int rangelow, int rangehigh) {
+    if(lazy[node]){
+      int size = high - low + 1;
 
-        seg_tree[node] += size * lazy_tree[node];
+      seg[node] += size * lazy[node];
 
-        if(low != high){
-            lazy_tree[2 * node + 1] += lazy_tree[node];
-            lazy_tree[2 * node + 2] += lazy_tree[node];
-        }
+      if(low != high){
+          lazy[2 * node + 1] += lazy[node];
+          lazy[2 * node + 2] += lazy[node];
+      }
 
-        lazy_tree[node] = 0;
+      lazy[node] = 0;
     }
 
     if(low > rangehigh or high < rangelow)
         return 0;
 
     if(low >= rangelow and high <= rangehigh)
-        return seg_tree[node];
+        return seg[node];
 
     int mid = low + (high - low) / 2;
 
-    int x = query(2 * node + 1, low, mid, rangelow, rangehigh);
-    int y = query(2 * node + 2, mid + 1, high, rangelow, rangehigh);
+    int x = _query_sum(2 * node + 1, low, mid, rangelow, rangehigh);
+    int y = _query_sum(2 * node + 2, mid + 1, high, rangelow, rangehigh);
 
     return x + y;
-}
+  }
+
+public:
+  seg_tree(int n, vector<int> &v) {
+    N = n;
+    input = v;
+    seg.resize(4 * N, 0);
+    lazy.resize(4 * N, 0);
+  }
+
+  void build_sum() { _build_sum(0, 0, N - 1); }
+  void update_sum(int l, int r, int dx) { _update_sum(0, 0, N - 1, l, r, dx); }
+  int query_sum(int l, int r) { return _query_sum(0, 0, N - 1, l, r); }
+};
